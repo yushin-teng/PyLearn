@@ -67,14 +67,15 @@
 
 #密碼重試程式
 # Max_of_Login = 2  #初版
-Max_of_Login = 3  #密碼輸入上限
+# password = input('請輸入您的密碼: ')
 user_password = 'a123456'
-while True:
-	password = input('請輸入您的密碼: ')
-	if password == user_password:
-		print(登入成功)	#跳出迴圈
-		break
-	else:
+Max_of_Login = 3  #密碼輸入上限
+
+# while True:
+# 	if password == user_password:
+# 		print(登入成功)	#跳出迴圈
+# 		break
+# 	else:
 		# if Max_of_Login <= 0 :
 		# 	print('登入次數超過3次，帳戶鎖定')
 		# 	break
@@ -94,9 +95,22 @@ while True:
 		# 	print('密碼錯誤，剩餘',Max_of_Login,'次機會')
 		
 		#modify2
-		Max_of_Login = Max_of_Login - 1 
-		print('密碼錯誤，剩餘',Max_of_Login,'次機會')				
+		# Max_of_Login = Max_of_Login - 1 
+		# print('密碼錯誤，剩餘',Max_of_Login,'次機會')				
+		# if Max_of_Login == 0:
+		# 	print('登入次數超過3次，帳戶鎖定')
+		# 	break
+
+#不可寫while true的寫法
+
+while Max_of_Login > 0:
+	Max_of_Login = Max_of_Login - 1	
+	password = input('請輸入您的密碼: ')	
+	if password == user_password:
+		print('登入成功')
+		break
+	else:	
 		if Max_of_Login == 0:
-			print('登入次數超過3次，帳戶鎖定')
-			break
-			
+			print('輸入錯誤3次，帳戶鎖定')
+		else:
+			print('密碼錯誤，剩餘',Max_of_Login,'次機會')	
