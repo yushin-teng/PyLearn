@@ -126,6 +126,7 @@ while True:
 	count += 1
 	if ans == r:
 		print('猜對了!')
+		print('這是你猜的第', count,'次')
 		break
 	else:
 		if ans > r:
