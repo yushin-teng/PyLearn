@@ -118,11 +118,12 @@
 #import 載入已實作程式
 import random
 
-r = random.randint(1, 10) #randint : random int隨機整數
-
+r = random.randint(1, 100) #randint : random int隨機整數
+count = 0
 while True:
 	ans = input('猜數字: ')
 	ans = int(ans)
+	count += 1
 	if ans == r:
 		print('猜對了!')
 		break
@@ -132,3 +133,4 @@ while True:
 		else:
 			print('猜得比答案小')
 
+	print('這是你猜的第', count,'次')
