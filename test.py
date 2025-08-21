@@ -180,13 +180,22 @@
 # open是打開檔案
 # with python獨有功能，會自動close開啟過的檔案，必須要寫，否則開啟檔案未關閉的話
 # 會造成檔案損毀
+# data = []
+# with open('food.txt', 'r') as f:	
+# 	for line in f:
+# 		print(line)
+# 		# data.append(line)
+# 		data.append(line.strip())	#strip 清除換行\n，只能對字串操作
+
+# print(data)
+# print(data[0])
+
+# 留言分析程式
 data = []
-with open('food.txt', 'r') as f:	
+with open('reviews.txt', 'r') as f:
 	for line in f:
-		print(line)
-		# data.append(line)
-		data.append(line.strip())	#strip 清除換行\n，只能對字串操作
-
-print(data)
-
-
+		data.append(line)
+print(len(data))
+print(data[0])
+print('--------------------------')
+print(data[1])
