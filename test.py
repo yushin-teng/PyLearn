@@ -167,11 +167,26 @@
 # 	print(name)
 
 #字串當清單
-car = 'Audi'
-# ['A', 'u', 'd', 'i']
-for member in car:
-	print(member)
-print(len(car))
-print('A' in car)
-print('Ai' in car)
+# car = 'Audi'
+# # ['A', 'u', 'd', 'i']
+# for member in car:
+# 	print(member)
+# print(len(car))
+# print('A' in car)
+# print('Ai' in car)
+
+#讀取檔案
+# r = read , w = write, as f 當作f(自行取變數)
+# open是打開檔案
+# with python獨有功能，會自動close開啟過的檔案，必須要寫，否則開啟檔案未關閉的話
+# 會造成檔案損毀
+data = []
+with open('food.txt', 'r') as f:	
+	for line in f:
+		print(line)
+		# data.append(line)
+		data.append(line.strip())	#strip 清除換行\n，只能對字串操作
+
+print(data)
+
 
