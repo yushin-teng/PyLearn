@@ -143,14 +143,25 @@
 
 # List清單 data type: int、float、bool、str、list(data structure)
 
-a = ['Toyota', 'Honda'] #空清單
-print(a)
-print(a[0]) #index 0 , Toyota
-print(a[1]) #index 1
+# a = ['Toyota', 'Honda'] #空清單
+# print(a)
+# print(a[0]) #index 0 , Toyota
+# print(a[1]) #index 1
 
-a.append('Audi') #append 新增清單項目
-print(a)
-print(len(a)) #清單長度
+# a.append('Audi') #append 新增清單項目
+# print(a)
+# print(len(a)) #清單長度
 
-print('Audi' in a) #是非題 True or False
-print('Benz' in a)
+# print('Audi' in a) #是非題 True or False
+# print('Benz' in a)
+
+#for loop
+
+cars = ['Toyota', 'Honda']
+
+for car in cars:	#car暫時變數僅給for迴圈使用
+	print(car)
+
+names = ['Allen', 'Tom', 'Jack']
+for name in names:
+	print(name)
