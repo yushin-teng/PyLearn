@@ -116,27 +116,41 @@
 # 			print('密碼錯誤，剩餘',Max_of_Login,'次機會')	
 
 #import 載入已實作程式
-import random
+# import random
 
-start_num = input('請決定隨機數字起始值: ')
-start_num = int(start_num)
-end_num = input('請決定隨機數字結束值: ')
-end_num = int(end_num)
+# start_num = input('請決定隨機數字起始值: ')
+# start_num = int(start_num)
+# end_num = input('請決定隨機數字結束值: ')
+# end_num = int(end_num)
 
-r = random.randint(1, 100) #randint : random int隨機整數
-count = 0
-while True:
-	ans = input('猜數字: ')
-	ans = int(ans)
-	count += 1
-	if ans == r:
-		print('猜對了!')
-		print('這是你猜的第', count,'次')
-		break
-	else:
-		if ans > r:
-			print('猜的比答案大')
-		else:
-			print('猜得比答案小')
+# r = random.randint(1, 100) #randint : random int隨機整數
+# count = 0
+# while True:
+# 	ans = input('猜數字: ')
+# 	ans = int(ans)
+# 	count += 1
+# 	if ans == r:
+# 		print('猜對了!')
+# 		print('這是你猜的第', count,'次')
+# 		break
+# 	else:
+# 		if ans > r:
+# 			print('猜的比答案大')
+# 		else:
+# 			print('猜得比答案小')
 
-	print('這是你猜的第', count,'次')
+# 	print('這是你猜的第', count,'次')
+
+# List清單 data type: int、float、bool、str、list(data structure)
+
+a = ['Toyota', 'Honda'] #空清單
+print(a)
+print(a[0]) #index 0 , Toyota
+print(a[1]) #index 1
+
+a.append('Audi') #append 新增清單項目
+print(a)
+print(len(a)) #清單長度
+
+print('Audi' in a) #是非題 True or False
+print('Benz' in a)
