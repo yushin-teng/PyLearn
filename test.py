@@ -68,8 +68,8 @@
 #密碼重試程式
 # Max_of_Login = 2  #初版
 # password = input('請輸入您的密碼: ')
-user_password = 'a123456'
-Max_of_Login = 3  #密碼輸入上限
+# user_password = 'a123456'
+# Max_of_Login = 3  #密碼輸入上限
 
 # while True:
 # 	if password == user_password:
@@ -103,14 +103,32 @@ Max_of_Login = 3  #密碼輸入上限
 
 #不可寫while true的寫法
 
-while Max_of_Login > 0:
-	Max_of_Login = Max_of_Login - 1	
-	password = input('請輸入您的密碼: ')	
-	if password == user_password:
-		print('登入成功')
+# while Max_of_Login > 0:
+# 	Max_of_Login = Max_of_Login - 1	
+# 	password = input('請輸入您的密碼: ')	
+# 	if password == user_password:
+# 		print('登入成功')
+# 		break
+# 	else:	
+# 		if Max_of_Login == 0:
+# 			print('輸入錯誤3次，帳戶鎖定')
+# 		else:
+# 			print('密碼錯誤，剩餘',Max_of_Login,'次機會')	
+
+#import 載入已實作程式
+import random
+
+r = random.randint(1, 10) #randint : random int隨機整數
+
+while True:
+	ans = input('猜數字: ')
+	ans = int(ans)
+	if ans == r:
+		print('猜對了!')
 		break
-	else:	
-		if Max_of_Login == 0:
-			print('輸入錯誤3次，帳戶鎖定')
+	else:
+		if ans > r:
+			print('猜的比答案大')
 		else:
-			print('密碼錯誤，剩餘',Max_of_Login,'次機會')	
+			print('猜得比答案小')
+
