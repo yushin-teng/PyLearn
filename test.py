@@ -51,16 +51,52 @@
 # 	break #離開迴圈
 # print('跳脫迴圈')
 
+# while True:
+# 	mode = input('請輸入遊戲模式: ')
+# 	if mode == 'q':
+# 		print('遊戲模式一')
+# 		break
+# 	elif mode == '1':
+# 		print('遊戲模式一')
+# 		break
+# 	elif mode == '2':
+# 		print('遊戲模式二')
+# 		break
+# 	else:
+# 		print('只能輸入1/2/q')
+
+#密碼重試程式
+# Max_of_Login = 2  #初版
+Max_of_Login = 3  #密碼輸入上限
+user_password = 'a123456'
 while True:
-	mode = input('請輸入遊戲模式: ')
-	if mode == 'q':
-		print('遊戲模式一')
-		break
-	elif mode == '1':
-		print('遊戲模式一')
-		break
-	elif mode == '2':
-		print('遊戲模式二')
+	password = input('請輸入您的密碼: ')
+	if password == user_password:
+		print(登入成功)	#跳出迴圈
 		break
 	else:
-		print('只能輸入1/2/q')
+		# if Max_of_Login <= 0 :
+		# 	print('登入次數超過3次，帳戶鎖定')
+		# 	break
+		# elif Max_of_Login == 2 :			
+		# 	print('密碼錯誤，剩餘',Max_of_Login,'次機會')
+		# 	Max_of_Login = Max_of_Login - 1
+		# elif Max_of_Login == 1 :			
+		# 	print('密碼錯誤，剩餘',Max_of_Login,'次機會')
+		# 	Max_of_Login = Max_of_Login - 1 
+
+		#modify1
+		# Max_of_Login = Max_of_Login - 1 
+		# if Max_of_Login == 0:
+		# 	print('登入次數超過3次，帳戶鎖定')
+		# 	break
+		# else:
+		# 	print('密碼錯誤，剩餘',Max_of_Login,'次機會')
+		
+		#modify2
+		Max_of_Login = Max_of_Login - 1 
+		print('密碼錯誤，剩餘',Max_of_Login,'次機會')				
+		if Max_of_Login == 0:
+			print('登入次數超過3次，帳戶鎖定')
+			break
+			
