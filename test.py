@@ -157,11 +157,21 @@
 
 #for loop
 
-cars = ['Toyota', 'Honda']
+# cars = ['Toyota', 'Honda']
 
-for car in cars:	#car暫時變數僅給for迴圈使用
-	print(car)
+# for car in cars:	#car暫時變數僅給for迴圈使用
+# 	print(car)
 
-names = ['Allen', 'Tom', 'Jack']
-for name in names:
-	print(name)
+# names = ['Allen', 'Tom', 'Jack']
+# for name in names:
+# 	print(name)
+
+#字串當清單
+car = 'Audi'
+# ['A', 'u', 'd', 'i']
+for member in car:
+	print(member)
+print(len(car))
+print('A' in car)
+print('Ai' in car)
+
