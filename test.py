@@ -118,6 +118,11 @@
 #import 載入已實作程式
 import random
 
+start_num = input('請決定隨機數字起始值: ')
+start_num = int(start_num)
+end_num = input('請決定隨機數字結束值: ')
+end_num = int(end_num)
+
 r = random.randint(1, 100) #randint : random int隨機整數
 count = 0
 while True:
