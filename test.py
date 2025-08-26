@@ -192,10 +192,13 @@
 
 # 留言分析程式
 data = []
+# count = 0
 with open('reviews.txt', 'r') as f:
 	for line in f:
 		data.append(line)
+		if len(data) % 1000 == 0:
+			print(len(data))
 print(len(data))
-print(data[0])
+print(data[0])	#印出第一筆資料
 print('--------------------------')
 print(data[1])
