@@ -198,7 +198,11 @@ with open('reviews.txt', 'r') as f:
 		data.append(line)
 		if len(data) % 1000 == 0:
 			print(len(data))
-print(len(data))
-print(data[0])	#印出第一筆資料
-print('--------------------------')
-print(data[1])
+print('檔案讀取完成, 總共有:', len(data), '筆資料')
+# print(data[0])	#印出第一筆資料
+# print('--------------------------')
+# print(data[1])
+Sum_len = 0
+for d in data:
+	Sum_len += len(d)
+print('留言平均長度為', Sum_len/len(data))
