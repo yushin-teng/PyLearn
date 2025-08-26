@@ -215,3 +215,26 @@ for d in data:
 		new.append(d)
 print('一共有', len(new), '長度小於100')
 print(new[0])
+
+good = []
+for d in data:
+	if 'good' in d:
+		good.append(d)
+print('包含good字眼的留言有', len(good), '筆資料')
+print(good[0])
+
+good_best = []
+good_best = [d for d in data if 'good' in d]
+
+print('包含good字眼的留言有', len(good_best), '筆資料')
+
+#              運算子          變數       清單        篩選條件
+# output = [(number - 1) for number in reference if num % 2 == 0]
+
+bad = ['bad' in d for d in data]
+print(bad)
+
+bad = []
+for d in data:
+	bad.append('bad' in d)
+print(bad)	
