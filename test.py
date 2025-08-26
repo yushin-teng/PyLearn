@@ -191,50 +191,61 @@
 # print(data[0])
 
 # 留言分析程式
-data = []
-# count = 0
-with open('reviews.txt', 'r') as f:
-	for line in f:
-		data.append(line)
-		if len(data) % 1000 == 0:
-			print(len(data))
-print('檔案讀取完成, 總共有:', len(data), '筆資料')
-# print(data[0])	#印出第一筆資料
-# print('--------------------------')
-# print(data[1])
-Sum_len = 0
-for d in data:
-	Sum_len += len(d)
-print('留言平均長度為', Sum_len/len(data))
+# data = []
+# # count = 0
+# with open('reviews.txt', 'r') as f:
+# 	for line in f:
+# 		data.append(line)
+# 		if len(data) % 1000 == 0:
+# 			print(len(data))
+# print('檔案讀取完成, 總共有:', len(data), '筆資料')
+# # print(data[0])	#印出第一筆資料
+# # print('--------------------------')
+# # print(data[1])
+# Sum_len = 0
+# for d in data:
+# 	Sum_len += len(d)
+# print('留言平均長度為', Sum_len/len(data))
 
-#清單篩選
-new = []
-length_max = 100
-for d in data:
-	if len(d) < length_max:
-		new.append(d)
-print('一共有', len(new), '長度小於100')
-print(new[0])
+# #清單篩選
+# new = []
+# length_max = 100
+# for d in data:
+# 	if len(d) < length_max:
+# 		new.append(d)
+# print('一共有', len(new), '長度小於100')
+# print(new[0])
 
-good = []
-for d in data:
-	if 'good' in d:
-		good.append(d)
-print('包含good字眼的留言有', len(good), '筆資料')
-print(good[0])
+# good = []
+# for d in data:
+# 	if 'good' in d:
+# 		good.append(d)
+# print('包含good字眼的留言有', len(good), '筆資料')
+# print(good[0])
 
-good_best = []
-good_best = [d for d in data if 'good' in d]
+# good_best = []
+# good_best = [d for d in data if 'good' in d]
 
-print('包含good字眼的留言有', len(good_best), '筆資料')
+# print('包含good字眼的留言有', len(good_best), '筆資料')
 
-#              運算子          變數       清單        篩選條件
-# output = [(number - 1) for number in reference if num % 2 == 0]
+# #              運算子          變數       清單        篩選條件
+# # output = [(number - 1) for number in reference if num % 2 == 0]
 
-bad = ['bad' in d for d in data]
-print(bad)
+# bad = ['bad' in d for d in data]
+# print(bad)
 
-bad = []
-for d in data:
-	bad.append('bad' in d)
-print(bad)	
+# bad = []
+# for d in data:
+# 	bad.append('bad' in d)
+# print(bad)	
+
+# Range範圍
+# python內建功能 : 清單產生器
+
+import random
+range(5)  # [0, 1, 2, 3, 4]
+range(3)  # [0, 1, 2]
+
+for i in range(6):
+	r = random.randint(1, 49)
+	print('這是第',i + 1 ,'次產生隨機數:', r)
