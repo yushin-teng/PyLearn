@@ -258,14 +258,21 @@
 
 
 #讀取檔案 split
+import os	#operating system
+# 檢查檔案在不在系統
 products = []
-with open('products.txt', 'r', encoding = 'utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue	#繼續，跳至下一回
-		name, price = line.strip().split(',')
-		products.append([name, price])
-print(products)
+if os.path.isfile('products.txt'): #只給檔名是相對路徑的給定方式，也可以給絕對路徑去查找
+	print('yeah!找到該檔案了!')
+	with open('products.txt', 'r', encoding = 'utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue	#繼續，跳至下一回繼續處理
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)
+else:
+	print('shit!找不到該檔案')
+
 
 # 記帳程式
 # while True:
