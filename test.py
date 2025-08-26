@@ -242,16 +242,32 @@
 # Range範圍
 # python內建功能 : 清單產生器
 
-import random
-range(5)  # [0, 1, 2, 3, 4]
-range(3)  # [0, 1, 2]
+# import random
+# range(5)  # [0, 1, 2, 3, 4]
+# range(3)  # [0, 1, 2]
 
-for i in range(6):
-	r = random.randint(1, 49)
-	print('這是第',i + 1 ,'次產生隨機數:', r)
+# for i in range(6):
+# 	r = random.randint(1, 49)
+# 	print('這是第',i + 1 ,'次產生隨機數:', r)
 
-range(2, 5) # [2, 3, 4]
-range(8, 10) # [8, 9]
-range(2, 10, 3) # [2, 5, 8]
-range(3, 8, 2) # [3, 5, 7]
-range(10, 3, -2) # [10, 8, 6, 4]
+# range(2, 5) # [2, 3, 4]
+# range(8, 10) # [8, 9]
+# range(2, 10, 3) # [2, 5, 8]
+# range(3, 8, 2) # [3, 5, 7]
+# range(10, 3, -2) # [10, 8, 6, 4]
+
+# 記帳程式
+products = []
+while True:
+	name = input('請輸入商品名稱:')
+	if name == 'q':
+		break
+	price = input('請輸入商品價格:')
+	# p = []	#小清單
+	# p.append(name)
+	# p.append(price)
+	p = [name, price]
+	products.append(p)
+print(len(products))
+print(products)
+print(products[0][1])
