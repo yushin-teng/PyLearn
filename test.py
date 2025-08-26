@@ -262,7 +262,7 @@ while True:
 	name = input('請輸入商品名稱:')
 	if name == 'q':
 		break
-	price = input('請輸入商品價格:')
+	price = int(input('請輸入商品價格:'))
 	# p = []	#小清單
 	# p.append(name)
 	# p.append(price)
@@ -275,7 +275,8 @@ for product in products:
 	print(product[0], '的價格是', product[1])
 
 # 字串可以做運算合併: 'abc' + 'edf' = 'abcdef' ； 'abc' * 3 = 'abcabcabc'
-with open('products.csv', 'w') as f:	#只有打開檔案而已
+with open('products.txt', 'w', encoding = 'utf-8') as f:	#只有打開檔案而已
+	f.write('商品,價格\n')	#加入開頭欄位名稱，encoding需確認是否正確(於打開檔案就要寫入想要的編法方式)
 	for p in products:
-		f.write(p[0] + ', ' + p[1] + '\n')	#逐筆寫入資料
+		f.write(p[0] + ', ' + str(p[1]) + '\n')	#逐筆寫入資料
 
