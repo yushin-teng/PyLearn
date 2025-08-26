@@ -256,27 +256,37 @@
 # range(3, 8, 2) # [3, 5, 7]
 # range(10, 3, -2) # [10, 8, 6, 4]
 
-# 記帳程式
-products = []
-while True:
-	name = input('請輸入商品名稱:')
-	if name == 'q':
-		break
-	price = int(input('請輸入商品價格:'))
-	# p = []	#小清單
-	# p.append(name)
-	# p.append(price)
-	p = [name, price]
-	products.append(p)
-# print(len(products))
-# print(products)
-print(products[0][1])
-for product in products:
-	print(product[0], '的價格是', product[1])
 
-# 字串可以做運算合併: 'abc' + 'edf' = 'abcdef' ； 'abc' * 3 = 'abcabcabc'
-with open('products.txt', 'w', encoding = 'utf-8') as f:	#只有打開檔案而已
-	f.write('商品,價格\n')	#加入開頭欄位名稱，encoding需確認是否正確(於打開檔案就要寫入想要的編法方式)
-	for p in products:
-		f.write(p[0] + ', ' + str(p[1]) + '\n')	#逐筆寫入資料
+#讀取檔案 split
+products = []
+with open('products.txt', 'r', encoding = 'utf-8') as f:
+	for line in f:
+		if '商品,價格' in line:
+			continue	#繼續，跳至下一回
+		name, price = line.strip().split(',')
+		products.append([name, price])
+print(products)
+
+# 記帳程式
+# while True:
+# 	name = input('請輸入商品名稱:')
+# 	if name == 'q':
+# 		break
+# 	price = int(input('請輸入商品價格:'))
+# 	# p = []	#小清單
+# 	# p.append(name)
+# 	# p.append(price)
+# 	p = [name, price]
+# 	products.append(p)
+# # print(len(products))
+# # print(products)
+# print(products[0][1])
+# for product in products:
+# 	print(product[0], '的價格是', product[1])
+
+# # 字串可以做運算合併: 'abc' + 'edf' = 'abcdef' ； 'abc' * 3 = 'abcabcabc'
+# with open('products.txt', 'w', encoding = 'utf-8') as f:	#只有打開檔案而已
+# 	f.write('商品,價格\n')	#加入開頭欄位名稱，encoding需確認是否正確(於打開檔案就要寫入想要的編法方式)
+# 	for p in products:
+# 		f.write(p[0] + ', ' + str(p[1]) + '\n')	#逐筆寫入資料
 
