@@ -273,3 +273,9 @@ while True:
 print(products[0][1])
 for product in products:
 	print(product[0], '的價格是', product[1])
+
+# 字串可以做運算合併: 'abc' + 'edf' = 'abcdef' ； 'abc' * 3 = 'abcabcabc'
+with open('products.csv', 'w') as f:	#只有打開檔案而已
+	for p in products:
+		f.write(p[0] + ', ' + p[1] + '\n')	#逐筆寫入資料
+
