@@ -258,20 +258,20 @@
 
 
 #讀取檔案 split
-import os	#operating system
-# 檢查檔案在不在系統
-products = []
-if os.path.isfile('products.txt'): #只給檔名是相對路徑的給定方式，也可以給絕對路徑去查找
-	print('yeah!找到該檔案了!')
-	with open('products.txt', 'r', encoding = 'utf-8') as f:
-		for line in f:
-			if '商品,價格' in line:
-				continue	#繼續，跳至下一回繼續處理
-			name, price = line.strip().split(',')
-			products.append([name, price])
-	print(products)
-else:
-	print('shit!找不到該檔案')
+# import os	#operating system
+# # 檢查檔案在不在系統
+# products = []
+# if os.path.isfile('products.txt'): #只給檔名是相對路徑的給定方式，也可以給絕對路徑去查找
+# 	print('yeah!找到該檔案了!')
+# 	with open('products.txt', 'r', encoding = 'utf-8') as f:
+# 		for line in f:
+# 			if '商品,價格' in line:
+# 				continue	#繼續，跳至下一回繼續處理
+# 			name, price = line.strip().split(',')
+# 			products.append([name, price])
+# 	print(products)
+# else:
+# 	print('shit!找不到該檔案')
 
 
 # 記帳程式
@@ -296,4 +296,53 @@ else:
 # 	f.write('商品,價格\n')	#加入開頭欄位名稱，encoding需確認是否正確(於打開檔案就要寫入想要的編法方式)
 # 	for p in products:
 # 		f.write(p[0] + ', ' + str(p[1]) + '\n')	#逐筆寫入資料
+
+# Function函式
+
+# def wash():	#功能實作 define
+# 	print('加水')
+# 	print('加洗衣精')
+# 	print('旋轉')
+
+# # wash()	#執行功能
+# wash()	
+
+# def say_hi():
+# 	print('Hi!')
+
+# say_hi()
+
+#parameter
+# def wash(dry = False, water_level = 8):	#功能實作 define
+# 	print('加水', water_level,'分滿')
+# 	print('加洗衣精')
+# 	print('旋轉')
+# 	if dry:
+# 		print('烘衣')
+# 	else:
+# 		print('自己曬衣服')
+
+# wash(True)	#dry = True
+# wash(water_level = 10)	#dry = False
+
+# def add(x = 0, y = 0):
+# 	print(x + y)
+
+# add(1, 2)
+# add(5, 4)
+# add()	#若參數有預設值，則可不需要輸入參數即可使用該函式
+# add(5)	# x = 5, y = 預設值
+# add(y = 5)	# x = 0, y = 5
+
+# #function return
+# def add(x=1, y=1):
+# 	return x + y
+# result = add(3, 4)
+# print(result)
+
+def average(numbers):
+	return sum(numbers) / len(numbers)
+
+print(average([1, 2, 3]))
+
 
