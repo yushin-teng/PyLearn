@@ -404,6 +404,7 @@
 # main()
 
 # 對話紀錄-程式改寫
+import os
 
 def read_file(filename):
 	lines = []
@@ -433,10 +434,13 @@ def write_file(datafile, lines):
 			f.write(line + '\n')
 
 def main():
-	lines = read_file('input.txt')
-	# print(lines)	#\ufeff 這些是記事本偷存的有關於編碼的資料
-	lines = convert(lines)
-	print(lines)
-	write_file('dataTest.txt', lines)
+	filename = 'input.txt'
+	if os.path.isfile(filename):
+		print('Input檔案存在!')	
+		lines = read_file(filename)
+		# print(lines)	#\ufeff 這些是記事本偷存的有關於編碼的資料
+		lines = convert(lines)
+		print(lines)
+		write_file('dataTest.txt', lines)
 
 main()
