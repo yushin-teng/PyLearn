@@ -447,57 +447,70 @@
 
 # 對話紀錄- Line對話格式改寫
 
-def read_fiel(filename):
-	conv_rec = []
-	with open(filename, 'r', encoding = 'utf-8-sig') as f:
-		for line in f:
-			conv_rec.append(line.strip())
-	return conv_rec
+# def read_fiel(filename):
+# 	conv_rec = []
+# 	with open(filename, 'r', encoding = 'utf-8-sig') as f:
+# 		for line in f:
+# 			conv_rec.append(line.strip())
+# 	return conv_rec
 
-def convert(conv_rec):
-	allen_word_cnt = 0
-	allen_stick_count = 0
-	allen_image_count = 0
-	viki_word_cnt = 0
-	viki_stick_count = 0
-	viki_image_count = 0
-	for rec in conv_rec:
-		s = rec.split(' ')
-		time = s[0]
-		name = s[1]
-		if name == 'Allen':
-			# 清單分割功能n[開始值:結束值] (開始有包含，結束不包含)
-			# n[:3] 可以拿到前三個
-			# n[2:4] 可以拿到n[2], n[3]
-			# n[-2:] 可以拿到最後兩個
-			if s[2] == '貼圖':
-				allen_stick_count += 1
-			elif s[2] == '圖片':
-				allen_image_count += 1
-			else:
-				for msg in s[2:]:	#2開始後的所有對話紀錄
-					allen_word_cnt += len(msg)
-		elif name == 'Viki':
-			if s[2] == '貼圖':
-				viki_stick_count += 1
-			elif s[2] == '圖片':
-				viki_image_count += 1
-			else:
-				for msg in s[2:]:
-					viki_word_cnt += len(msg)
+# def convert(conv_rec):
+# 	allen_word_cnt = 0
+# 	allen_stick_count = 0
+# 	allen_image_count = 0
+# 	viki_word_cnt = 0
+# 	viki_stick_count = 0
+# 	viki_image_count = 0
+# 	for rec in conv_rec:
+# 		s = rec.split(' ')
+# 		time = s[0]
+# 		name = s[1]
+# 		if name == 'Allen':
+# 			# 清單分割功能n[開始值:結束值] (開始有包含，結束不包含)
+# 			# n[:3] 可以拿到前三個
+# 			# n[2:4] 可以拿到n[2], n[3]
+# 			# n[-2:] 可以拿到最後兩個
+# 			if s[2] == '貼圖':
+# 				allen_stick_count += 1
+# 			elif s[2] == '圖片':
+# 				allen_image_count += 1
+# 			else:
+# 				for msg in s[2:]:	#2開始後的所有對話紀錄
+# 					allen_word_cnt += len(msg)
+# 		elif name == 'Viki':
+# 			if s[2] == '貼圖':
+# 				viki_stick_count += 1
+# 			elif s[2] == '圖片':
+# 				viki_image_count += 1
+# 			else:
+# 				for msg in s[2:]:
+# 					viki_word_cnt += len(msg)
 
-	print('allen說了', allen_word_cnt, '個字')
-	print('allen傳了', allen_stick_count, '個貼圖')
-	print('allen傳了', allen_image_count, '個圖片')
+# 	print('allen說了', allen_word_cnt, '個字')
+# 	print('allen傳了', allen_stick_count, '個貼圖')
+# 	print('allen傳了', allen_image_count, '個圖片')
 
-	print('viki說了', viki_word_cnt, '個字')	
-	print('viki傳了', viki_stick_count, '個貼圖')
-	print('viki傳了', viki_image_count, '個圖片')
+# 	print('viki說了', viki_word_cnt, '個字')	
+# 	print('viki傳了', viki_stick_count, '個貼圖')
+# 	print('viki傳了', viki_image_count, '個圖片')
 
 
-def main():
-	line_rec = read_fiel('LINE-Viki.txt')
+# def main():
+# 	line_rec = read_fiel('LINE-Viki.txt')
 
-	convert(line_rec)
+# 	convert(line_rec)
 
-main()
+# main()
+
+# 對話紀錄-3
+lines = []
+with open('3.txt', 'r', encoding = 'utf-8-sig') as f:
+	for line in f:
+		lines.append(line.strip())
+
+for line in lines:
+	s = line.split(' ')
+	time = s[0][:5]
+	name = s[0][5:]
+	print('時間: ', time)
+	print('名字: ', name)
