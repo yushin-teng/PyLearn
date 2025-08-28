@@ -533,17 +533,51 @@
 # print(words)
 
 # 字典可以儲存屬性名稱
-p0 = {
-	'name' : '麥香奶茶',
-	'price': 15
-}
+# p0 = {
+# 	'name' : '麥香奶茶',
+# 	'price': 15
+# }
 
-p1 = {	
-	'name' : '珍珠奶茶',
-	'price': 60
-}
+# p1 = {	
+# 	'name' : '珍珠奶茶',
+# 	'price': 60
+# }
 
-drinks = [p0, p1]	#list, 清單裝字典
-print(drinks[0])
-print(drinks[0]['name'])
-print(drinks[0]['price'])
+# drinks = [p0, p1]	#list, 清單裝字典
+# print(drinks[0])
+# print(drinks[0]['name'])
+# print(drinks[0]['price'])
+
+# 留言程式: 最常出現的字數
+data = []
+with open('reviews.txt', 'r', encoding = 'utf-8-sig') as f:
+	for d in f:
+		data.append(d)
+print(len(data))
+
+word_cnt = {}
+for d in data:
+	# words = d.split(' ')	
+	words = d.split()	#split預設值就是空白鍵
+	for word in words:	# 建立字典
+		if word in word_cnt:
+			word_cnt[word] += 1
+		else:
+			word_cnt[word] = 1	# 新增新的key(第一次遇到的word)
+
+for word in word_cnt:
+	if word_cnt[word] > 1000000:
+		print(word, word_cnt[word])
+
+print(len(word_cnt))
+print(word_cnt['Allen'])
+
+while True:
+	word = input('請問你想查什麼字: ')
+	if word == 'q':
+		print('感謝使用查詢功能')
+	break
+	if word in word_cnt:
+		print(word, '出現過',word_cnt[word], '次')
+	else:
+		print('此單字未出現在留言中')
