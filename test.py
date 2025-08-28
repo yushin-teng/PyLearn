@@ -502,15 +502,48 @@
 
 # main()
 
-# 對話紀錄-3
-lines = []
-with open('3.txt', 'r', encoding = 'utf-8-sig') as f:
-	for line in f:
-		lines.append(line.strip())
+# 對話紀錄-3 清單分割法
+# lines = []
+# with open('3.txt', 'r', encoding = 'utf-8-sig') as f:
+# 	for line in f:
+# 		lines.append(line.strip())
 
-for line in lines:
-	s = line.split(' ')
-	time = s[0][:5]
-	name = s[0][5:]
-	print('時間: ', time)
-	print('名字: ', name)
+# for line in lines:
+# 	s = line.split(' ')
+# 	time = s[0][:5]
+# 	name = s[0][5:]
+# 	print('時間: ', time)
+# 	print('名字: ', name)
+
+
+# Dictionary字典
+# a = []	#清單
+# d = {}	#字典
+
+# words = {
+# 	# key      value值 : 字典的核心概念就是key-value pair key跟值的配對
+# 	'ramen': '拉麵',
+# 	'pasta': '義大利麵'
+# }
+
+# words['tea'] = '茶'	#增加新的key的寫法
+
+# print(words['ramen'])
+# print(words['tea'])
+# print(words)
+
+# 字典可以儲存屬性名稱
+p0 = {
+	'name' : '麥香奶茶',
+	'price': 15
+}
+
+p1 = {	
+	'name' : '珍珠奶茶',
+	'price': 60
+}
+
+drinks = [p0, p1]	#list, 清單裝字典
+print(drinks[0])
+print(drinks[0]['name'])
+print(drinks[0]['price'])
