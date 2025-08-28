@@ -404,43 +404,100 @@
 # main()
 
 # 對話紀錄-程式改寫
-import os
+# import os
 
-def read_file(filename):
-	lines = []
+# def read_file(filename):
+# 	lines = []
+# 	with open(filename, 'r', encoding = 'utf-8-sig') as f:
+# 		for line in f:
+# 			lines.append(line.strip())
+# 	return lines
+
+# def convert(lines):
+# 	new = []
+# 	person = None
+# 	for line in lines:
+# 		if line == 'Allen':
+# 			person = 'Allen'
+# 			continue
+# 		elif line == 'Tom':
+# 			person = 'Tom'
+# 			continue
+
+# 		if person:	#person有值才執行
+# 			new.append(person + ': ' + line)
+# 	return new
+
+# def write_file(datafile, lines):
+# 	with open(datafile, 'w', encoding = 'utf-8-sig') as f:
+# 		for line in lines:
+# 			f.write(line + '\n')
+
+# def main():
+# 	filename = 'input.txt'
+# 	if os.path.isfile(filename):
+# 		print('Input檔案存在!')	
+# 		lines = read_file(filename)
+# 		# print(lines)	#\ufeff 這些是記事本偷存的有關於編碼的資料
+# 		lines = convert(lines)
+# 		print(lines)
+# 		write_file('dataTest.txt', lines)
+
+# main()
+
+# 對話紀錄- Line對話格式改寫
+
+def read_fiel(filename):
+	conv_rec = []
 	with open(filename, 'r', encoding = 'utf-8-sig') as f:
 		for line in f:
-			lines.append(line.strip())
-	return lines
+			conv_rec.append(line.strip())
+	return conv_rec
 
-def convert(lines):
-	new = []
-	person = None
-	for line in lines:
-		if line == 'Allen':
-			person = 'Allen'
-			continue
-		elif line == 'Tom':
-			person = 'Tom'
-			continue
+def convert(conv_rec):
+	allen_word_cnt = 0
+	allen_stick_count = 0
+	allen_image_count = 0
+	viki_word_cnt = 0
+	viki_stick_count = 0
+	viki_image_count = 0
+	for rec in conv_rec:
+		s = rec.split(' ')
+		time = s[0]
+		name = s[1]
+		if name == 'Allen':
+			# 清單分割功能n[開始值:結束值] (開始有包含，結束不包含)
+			# n[:3] 可以拿到前三個
+			# n[2:4] 可以拿到n[2], n[3]
+			# n[-2:] 可以拿到最後兩個
+			if s[2] == '貼圖':
+				allen_stick_count += 1
+			elif s[2] == '圖片':
+				allen_image_count += 1
+			else:
+				for msg in s[2:]:	#2開始後的所有對話紀錄
+					allen_word_cnt += len(msg)
+		elif name == 'Viki':
+			if s[2] == '貼圖':
+				viki_stick_count += 1
+			elif s[2] == '圖片':
+				viki_image_count += 1
+			else:
+				for msg in s[2:]:
+					viki_word_cnt += len(msg)
 
-		if person:	#person有值才執行
-			new.append(person + ': ' + line)
-	return new
+	print('allen說了', allen_word_cnt, '個字')
+	print('allen傳了', allen_stick_count, '個貼圖')
+	print('allen傳了', allen_image_count, '個圖片')
 
-def write_file(datafile, lines):
-	with open(datafile, 'w', encoding = 'utf-8-sig') as f:
-		for line in lines:
-			f.write(line + '\n')
+	print('viki說了', viki_word_cnt, '個字')	
+	print('viki傳了', viki_stick_count, '個貼圖')
+	print('viki傳了', viki_image_count, '個圖片')
+
 
 def main():
-	filename = 'input.txt'
-	if os.path.isfile(filename):
-		print('Input檔案存在!')	
-		lines = read_file(filename)
-		# print(lines)	#\ufeff 這些是記事本偷存的有關於編碼的資料
-		lines = convert(lines)
-		print(lines)
-		write_file('dataTest.txt', lines)
+	line_rec = read_fiel('LINE-Viki.txt')
+
+	convert(line_rec)
 
 main()
