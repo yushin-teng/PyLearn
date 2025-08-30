@@ -551,51 +551,71 @@
 # 留言程式: 最常出現的字數
 
 # import標準函式庫套件
-import time
-import progressbar	#進度條套件, 可以去pypi的網站抓取別人已寫好的套件，皆有說明使用套件方式，也可以在github上查找原始程式碼
+# import time
+# import progressbar	#進度條套件, 可以去pypi的網站抓取別人已寫好的套件，皆有說明使用套件方式，也可以在github上查找原始程式碼
 
-data = []
-count = 0
-# 在python裡所有的東西都是物件(object)
-# x = 5  x是一個物件，只是型別不同 (type, 此為int)，型別可以當物件使用
-#                  object 物件(ProgressBar)，物件第一個字一定是大寫，function第一個字一定是小寫!!!
-bar = progressbar.ProgressBar(max_value = 1000000)
-with open('reviews.txt', 'r', encoding = 'utf-8-sig') as f:
-	for d in f:
-		data.append(d)
-		count += 1
-		# bar的專屬功能update，update是ProgressBar這個類別裡的function
-		bar.update(count)
-print('檔案讀取完了，有', len(data), '筆資料')
-# 計時開始
-start_time = time.time()
-word_cnt = {}
-for d in data:
-	# words = d.split(' ')	
-	words = d.split()	#split預設值就是空白鍵
-	for word in words:	# 建立字典
-		if word in word_cnt:
-			word_cnt[word] += 1
-		else:
-			word_cnt[word] = 1	# 新增新的key(第一次遇到的word)
+# data = []
+# count = 0
+# # 在python裡所有的東西都是物件(object)
+# # x = 5  x是一個物件，只是型別不同 (type, 此為int)，型別可以當物件使用
+# #                  object 物件(ProgressBar)，物件第一個字一定是大寫，function第一個字一定是小寫!!!
+# bar = progressbar.ProgressBar(max_value = 1000000)
+# with open('reviews.txt', 'r', encoding = 'utf-8-sig') as f:
+# 	for d in f:
+# 		data.append(d)
+# 		count += 1
+# 		# bar的專屬功能update，update是ProgressBar這個類別裡的function
+# 		bar.update(count)
+# print('檔案讀取完了，有', len(data), '筆資料')
+# # 計時開始
+# start_time = time.time()
+# word_cnt = {}
+# for d in data:
+# 	# words = d.split(' ')	
+# 	words = d.split()	#split預設值就是空白鍵
+# 	for word in words:	# 建立字典
+# 		if word in word_cnt:
+# 			word_cnt[word] += 1
+# 		else:
+# 			word_cnt[word] = 1	# 新增新的key(第一次遇到的word)
 
-for word in word_cnt:
-	if word_cnt[word] > 1000000:
-		print(word, word_cnt[word])
+# for word in word_cnt:
+# 	if word_cnt[word] > 1000000:
+# 		print(word, word_cnt[word])
 
-print(len(word_cnt))
-print(word_cnt['Allen'])
-end_time = time.time()
-# 計時結束
-print('花了', end_time - start_time, 'sec')
+# print(len(word_cnt))
+# print(word_cnt['Allen'])
+# end_time = time.time()
+# # 計時結束
+# print('花了', end_time - start_time, 'sec')
 
-while True:
-	word = input('請問你想查什麼字: ')
-	if word == 'q':
-		print('感謝使用查詢功能')
-	break
-	if word in word_cnt:
-		print(word, '出現過',word_cnt[word], '次')
-	else:
-		print('此單字未出現在留言中')
+# while True:
+# 	word = input('請問你想查什麼字: ')
+# 	if word == 'q':
+# 		print('感謝使用查詢功能')
+# 	break
+# 	if word in word_cnt:
+# 		print(word, '出現過',word_cnt[word], '次')
+# 	else:
+# 		print('此單字未出現在留言中')
+
+#處理Excel套件:openpyxl
+from openpyxl import Workbook
+wb = Workbook()
+
+# grab the active worksheet
+ws = wb.active
+
+# Data can be assigned directly to cells
+ws['A1'] = 42
+
+# Rows can also be appended
+ws.append([1, 2, 3])
+
+# Python types will automatically be converted
+import datetime
+ws['A2'] = datetime.datetime.now()
+
+# Save the file
+wb.save("sample.xlsx")
 
