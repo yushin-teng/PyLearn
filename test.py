@@ -620,47 +620,102 @@
 # wb.save("sample.xlsx")
 
 #處理Word套件:python-docx
-from docx import Document
-from docx.shared import Inches
+# from docx import Document
+# from docx.shared import Inches
 
-document = Document()
+# document = Document()
 
-document.add_heading('Document Title', 0)
+# document.add_heading('Document Title', 0)
 
-p = document.add_paragraph('A plain paragraph having some ')
-p.add_run('bold').bold = True
-p.add_run(' and some ')
-p.add_run('italic.').italic = True
+# p = document.add_paragraph('A plain paragraph having some ')
+# p.add_run('bold').bold = True
+# p.add_run(' and some ')
+# p.add_run('italic.').italic = True
 
-document.add_heading('Heading, level 1', level=1)
-document.add_paragraph('Intense quote', style='Intense Quote')
+# document.add_heading('Heading, level 1', level=1)
+# document.add_paragraph('Intense quote', style='Intense Quote')
 
-document.add_paragraph(
-    'first item in unordered list', style='List Bullet'
-)
-document.add_paragraph(
-    'first item in ordered list', style='List Number'
-)
+# document.add_paragraph(
+#     'first item in unordered list', style='List Bullet'
+# )
+# document.add_paragraph(
+#     'first item in ordered list', style='List Number'
+# )
 
-document.add_picture('Remove_impurities.png', width=Inches(1.25))
+# document.add_picture('Remove_impurities.png', width=Inches(1.25))
 
-records = (
-    (3, '101', 'Spam'),
-    (7, '422', 'Eggs'),
-    (4, '631', 'Spam, spam, eggs, and spam')
-)
+# records = (
+#     (3, '101', 'Spam'),
+#     (7, '422', 'Eggs'),
+#     (4, '631', 'Spam, spam, eggs, and spam')
+# )
 
-table = document.add_table(rows=1, cols=3)
-hdr_cells = table.rows[0].cells
-hdr_cells[0].text = 'Qty'
-hdr_cells[1].text = 'Id'
-hdr_cells[2].text = 'Desc'
-for qty, id, desc in records:
-    row_cells = table.add_row().cells
-    row_cells[0].text = str(qty)
-    row_cells[1].text = id
-    row_cells[2].text = desc
+# table = document.add_table(rows=1, cols=3)
+# hdr_cells = table.rows[0].cells
+# hdr_cells[0].text = 'Qty'
+# hdr_cells[1].text = 'Id'
+# hdr_cells[2].text = 'Desc'
+# for qty, id, desc in records:
+#     row_cells = table.add_row().cells
+#     row_cells[0].text = str(qty)
+#     row_cells[1].text = id
+#     row_cells[2].text = desc
 
-document.add_page_break()
+# document.add_page_break()
 
-document.save('demo.docx')
+# document.save('demo.docx')
+
+#製作圖表: matplotlib
+# import matplotlib.pyplot as plt 	#as 簡稱 plt，如果沒用簡稱 則都需要打全名才可以使用
+# import numpy as np
+
+# plt.style.use('_mpl-gallery')
+
+# # make data
+# x = np.linspace(0, 10, 100)
+# y = 4 + 1 * np.sin(2 * x)
+# x2 = np.linspace(0, 10, 25)
+# y2 = 4 + 1 * np.sin(2 * x2)
+
+# # plot
+# fig, ax = plt.subplots()
+
+# ax.plot(x2, y2 + 2.5, 'x', markeredgewidth=2)
+# ax.plot(x, y, linewidth=2.0)
+# ax.plot(x2, y2 - 2.5, 'o-', linewidth=2)
+
+# ax.set(xlim=(0, 8), xticks=np.arange(1, 8),
+#        ylim=(0, 8), yticks=np.arange(1, 8))
+
+# plt.show()
+
+# plt.plot([1,2,3,4],[1,4,9,16], 'ro')
+# plt.axis([0, 6, 0, 20])
+# plt.ylabel('efficiency')
+# plt.xlabel('times')
+# plt.show()
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+species = ('Adelie', 'Chinstrap', 'Gentoo')
+sex_counts = {
+    'Male': np.array([73, 34, 61]),
+    'Female': np.array([73, 34, 58]),
+}
+width = 0.6  # the width of the bars: can also be len(x) sequence
+
+
+fig, ax = plt.subplots()
+bottom = np.zeros(3)
+
+for sex, sex_count in sex_counts.items():
+    p = ax.bar(species, sex_count, width, label=sex, bottom=bottom)
+    bottom += sex_count
+
+    ax.bar_label(p, label_type='center')
+
+ax.set_title('Number of penguins by sex')
+ax.legend()
+
+plt.show()
