@@ -665,7 +665,7 @@
 
 # document.save('demo.docx')
 
-#製作圖表: matplotlib
+# 製作圖表: matplotlib
 # import matplotlib.pyplot as plt 	#as 簡稱 plt，如果沒用簡稱 則都需要打全名才可以使用
 # import numpy as np
 
@@ -695,27 +695,36 @@
 # plt.xlabel('times')
 # plt.show()
 
-import matplotlib.pyplot as plt
-import numpy as np
+# import matplotlib.pyplot as plt
+# import numpy as np
 
-species = ('Adelie', 'Chinstrap', 'Gentoo')
-sex_counts = {
-    'Male': np.array([73, 34, 61]),
-    'Female': np.array([73, 34, 58]),
-}
-width = 0.6  # the width of the bars: can also be len(x) sequence
+# species = ('Adelie', 'Chinstrap', 'Gentoo')
+# sex_counts = {
+#     'Male': np.array([73, 34, 61]),
+#     'Female': np.array([73, 34, 58]),
+# }
+# width = 0.6  # the width of the bars: can also be len(x) sequence
 
 
-fig, ax = plt.subplots()
-bottom = np.zeros(3)
+# fig, ax = plt.subplots()
+# bottom = np.zeros(3)
 
-for sex, sex_count in sex_counts.items():
-    p = ax.bar(species, sex_count, width, label=sex, bottom=bottom)
-    bottom += sex_count
+# for sex, sex_count in sex_counts.items():
+#     p = ax.bar(species, sex_count, width, label=sex, bottom=bottom)
+#     bottom += sex_count
 
-    ax.bar_label(p, label_type='center')
+#     ax.bar_label(p, label_type='center')
 
-ax.set_title('Number of penguins by sex')
-ax.legend()
+# ax.set_title('Number of penguins by sex')
+# ax.legend()
 
-plt.show()
+# # plt.show()
+# plt.savefig('test123.png')
+
+# 寄送簡訊程式 : twilio註冊使用(下載其套件)
+
+# 圖片處理 : pillow
+from PIL import Image
+image_file = Image.open("Remove_impurities.png")
+image_file = image_file.convert('1')	#convert image to black and white
+image_file.save('testImg.png')
