@@ -749,64 +749,111 @@ import os
 # 物件包含屬性(可用dir(物件)查詢
 # self ? self-reference 
 
-class Student:	#class命名需大寫開頭
-	def __init__(self, name, score):	# initialize初始化
-		self.sleep_time = 8
-		self.name = name
-		self.score = score
-		print('初始化程式')
+# class Student:	#class命名需大寫開頭
+# 	def __init__(self, name, score):	# initialize初始化
+# 		self.sleep_time = 8
+# 		self.name = name
+# 		self.score = score
+# 		print('初始化程式')
 
-	def do_hw(self, subject):
-		print('快做作業' + subject)
+# 	def do_hw(self, subject):
+# 		print('快做作業' + subject)
 
-	def study(self):
-		print(self.name, '規劃讀書計畫')
-		self.score += 5
+# 	def study(self):
+# 		print(self.name, '規劃讀書計畫')
+# 		self.score += 5
 
-	def sleep(self):
-		print('I need to sleep', self.sleep_time, '小時')
-		self.study()	# 如果要執行此class的function, 需使用self去call
+# 	def sleep(self):
+# 		print('I need to sleep', self.sleep_time, '小時')
+# 		self.study()	# 如果要執行此class的function, 需使用self去call
 
-s1 = Student('YuShin', 100)	# 產生出一個物件
-s2 = Student('Jilin', 100)
-s1.do_hw('English')
-print(s1.score, s2.score)
-s1.study()
-s1.sleep()
-# print(dir(s1))
-print(s1.name, s2.name)
-print(s1.score, s2.score)
+# s1 = Student('YuShin', 100)	# 產生出一個物件
+# s2 = Student('Jilin', 100)
+# s1.do_hw('English')
+# print(s1.score, s2.score)
+# s1.study()
+# s1.sleep()
+# # print(dir(s1))
+# print(s1.name, s2.name)
+# print(s1.score, s2.score)
 
-students = [s1, s2]
-for s in students:
-	print(s.name, '的分數是',s.score, '分')
+# students = [s1, s2]
+# for s in students:
+# 	print(s.name, '的分數是',s.score, '分')
 
 
-class Desk:
-	def __init__(self, color, height):
-		print('客製化桌子')
-		self.color = color
-		self.height = height
-	def re_color(self, new_color):
-		self.color = new_color
+# class Desk:
+# 	def __init__(self, color, height):
+# 		print('客製化桌子')
+# 		self.color = color
+# 		self.height = height
+# 	def re_color(self, new_color):
+# 		self.color = new_color
 
-d = Desk('brown','50')	# instantiation 實體化
-print(d.color)
-d.re_color('red')
-print(d.color)
+# d = Desk('brown','50')	# instantiation 實體化
+# print(d.color)
+# d.re_color('red')
+# print(d.color)
 
-class YoutubeDownLoader:	# c3套組內的一個模組
+# class YoutubeDownLoader:	# c3套組內的一個模組
+# 	def __init__(self):
+# 		print('我誕生了')
+
+# 	def download_single_vedio(self, url):	# URL, Uniform Resource Locator 統一資源定位符號 (即網址)
+# 		print('downloading...', url)
+
+# 	def download_multiple_vedios(self, urls):
+# 		for url in urls:
+# 			self.download_single_vedio(url)
+
+# from c3 import YoutubeDownLoader	#可以從套組中使用其中一個模組
+
+# ytd = YoutubeDownLoader()
+# ytd.download_single_vedio('http://youtube.com/XXXXXXX')
+
+class Player:
+	def __init__(self, name):
+		self.name = name	
+		self.hp = 100
+		self.ap = 2
+		self.level = 1
+		self.defence = 1
+
+	def attack(self, target):	# method
+		print(self.name, '死纏爛打', target.name)	# 此寫法target需有name成員才可以作為參數使用，若亂引入則程式會當掉
+		target.hp = target.hp - (self.ap - target.defence)
+		print(target.hp, '血量')
+
+p1 = Player('YuShin')
+p2 = Player('JiLin')
+players = [p1, p2]
+
+for p in players:
+	print('玩家名稱:',p.name, '等級:',p.level, '血量: ',p.hp, '攻擊力: ',p.ap)
+
+p1.attack(p2)
+print(p2.hp)
+
+
+
+
+class Db:
 	def __init__(self):
-		print('我誕生了')
+		self.connect()
 
-	def download_single_vedio(self, url):	# URL, Uniform Resource Locator 統一資源定位符號 (即網址)
-		print('downloading...', url)
+	def connect(self):
+		print('實際建立連線')
 
-	def download_multiple_vedios(self, urls):
-		for url in urls:
-			self.download_single_vedio(url)
+	def insert_data(self):
+		print('上傳資料')
 
-from c3 import YoutubeDownLoader	#可以從套組中使用其中一個模組
+# 若Db再不同的檔案程式碼db，則採以下import
+from db import Db
 
-ytd = YoutubeDownLoader()
-ytd.download_single_vedio('http://youtube.com/XXXXXXX')
+class Tool:
+	def __init__(self):
+		print('test first')
+		self.db = Db()
+
+	def upload(self):
+		self.db.insert_data()
