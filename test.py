@@ -725,6 +725,22 @@
 
 # 圖片處理 : pillow
 from PIL import Image
-image_file = Image.open("Remove_impurities.png")
-image_file = image_file.convert('1')	#convert image to black and white
-image_file.save('testImg.png')
+import os
+
+# image_file = Image.open("Remove_impurities.png")
+# print(type(image_file))	#檢查使用的物件名稱
+# image_file = image_file.convert('L')	#convert image to black and white, 可以用1或L
+# image_file.save('testImg.png')
+
+
+# for file in os.listdir('.'):	#list dir顯示此資料夾的清單， .是同階層
+# 	if file.endswith('.png'):
+# 		print(file)
+
+
+for file in os.listdir('origin_image'):	
+	if file.endswith('.png'):
+		# image_file = Image.open('origin_image/' + file)	# 需處理路徑問題，OS模組有路徑合併的模組，此寫法是手動寫
+		image_file = Image.open(os.path.join('origin_image', file))	# OS路徑模組合併
+		image_file = image_file.convert('L')	#convert image to black and white, 可以用1或L
+		image_file.save(os.path.join('new_image', file[:-4]) + '_gray.png')	#可以不用包含.png ([:-4]倒數四個字串)；需處理路徑問題
