@@ -738,9 +738,75 @@ import os
 # 		print(file)
 
 
-for file in os.listdir('origin_image'):	
-	if file.endswith('.png'):
-		# image_file = Image.open('origin_image/' + file)	# 需處理路徑問題，OS模組有路徑合併的模組，此寫法是手動寫
-		image_file = Image.open(os.path.join('origin_image', file))	# OS路徑模組合併
-		image_file = image_file.convert('L')	#convert image to black and white, 可以用1或L
-		image_file.save(os.path.join('new_image', file[:-4]) + '_gray.png')	#可以不用包含.png ([:-4]倒數四個字串)；需處理路徑問題
+# for file in os.listdir('origin_image'):	
+# 	if file.endswith('.png'):
+# 		# image_file = Image.open('origin_image/' + file)	# 需處理路徑問題，OS模組有路徑合併的模組，此寫法是手動寫
+# 		image_file = Image.open(os.path.join('origin_image', file))	# OS路徑模組合併
+# 		image_file = image_file.convert('L')	#convert image to black and white, 可以用1或L
+# 		image_file.save(os.path.join('new_image', file[:-4]) + '_gray.png')	#可以不用包含.png ([:-4]倒數四個字串)；需處理路徑問題
+
+# class類別
+# 物件包含屬性(可用dir(物件)查詢
+# self ? self-reference 
+
+class Student:	#class命名需大寫開頭
+	def __init__(self, name, score):	# initialize初始化
+		self.sleep_time = 8
+		self.name = name
+		self.score = score
+		print('初始化程式')
+
+	def do_hw(self, subject):
+		print('快做作業' + subject)
+
+	def study(self):
+		print(self.name, '規劃讀書計畫')
+		self.score += 5
+
+	def sleep(self):
+		print('I need to sleep', self.sleep_time, '小時')
+		self.study()	# 如果要執行此class的function, 需使用self去call
+
+s1 = Student('YuShin', 100)	# 產生出一個物件
+s2 = Student('Jilin', 100)
+s1.do_hw('English')
+print(s1.score, s2.score)
+s1.study()
+s1.sleep()
+# print(dir(s1))
+print(s1.name, s2.name)
+print(s1.score, s2.score)
+
+students = [s1, s2]
+for s in students:
+	print(s.name, '的分數是',s.score, '分')
+
+
+class Desk:
+	def __init__(self, color, height):
+		print('客製化桌子')
+		self.color = color
+		self.height = height
+	def re_color(self, new_color):
+		self.color = new_color
+
+d = Desk('brown','50')	# instantiation 實體化
+print(d.color)
+d.re_color('red')
+print(d.color)
+
+class YoutubeDownLoader:	# c3套組內的一個模組
+	def __init__(self):
+		print('我誕生了')
+
+	def download_single_vedio(self, url):	# URL, Uniform Resource Locator 統一資源定位符號 (即網址)
+		print('downloading...', url)
+
+	def download_multiple_vedios(self, urls):
+		for url in urls:
+			self.download_single_vedio(url)
+
+from c3 import YoutubeDownLoader	#可以從套組中使用其中一個模組
+
+ytd = YoutubeDownLoader()
+ytd.download_single_vedio('http://youtube.com/XXXXXXX')
