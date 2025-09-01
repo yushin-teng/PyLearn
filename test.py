@@ -811,33 +811,34 @@ import os
 # ytd = YoutubeDownLoader()
 # ytd.download_single_vedio('http://youtube.com/XXXXXXX')
 
-class Player:
-	def __init__(self, name):
-		self.name = name	
-		self.hp = 100
-		self.ap = 2
-		self.level = 1
-		self.defence = 1
+# class Player:
+# 	def __init__(self, name):
+# 		self.name = name	
+# 		self.hp = 100
+# 		self.ap = 2
+# 		self.level = 1
+# 		self.defence = 1
 
-	def attack(self, target):	# method
-		print(self.name, '死纏爛打', target.name)	# 此寫法target需有name成員才可以作為參數使用，若亂引入則程式會當掉
-		target.hp = target.hp - (self.ap - target.defence)
-		print(target.hp, '血量')
+# 	def attack(self, target):	# method
+# 		print(self.name, '死纏爛打', target.name)	# 此寫法target需有name成員才可以作為參數使用，若亂引入則程式會當掉
+# 		target.hp = target.hp - (self.ap - target.defence)
+# 		print(target.hp, '血量')
 
-p1 = Player('YuShin')
-p2 = Player('JiLin')
-players = [p1, p2]
+# p1 = Player('YuShin')
+# p2 = Player('JiLin')
+# players = [p1, p2]
 
-for p in players:
-	print('玩家名稱:',p.name, '等級:',p.level, '血量: ',p.hp, '攻擊力: ',p.ap)
+# for p in players:
+# 	print('玩家名稱:',p.name, '等級:',p.level, '血量: ',p.hp, '攻擊力: ',p.ap)
 
-p1.attack(p2)
-print(p2.hp)
-
-
+# p1.attack(p2)
+# print(p2.hp)
 
 
-class Db:
+# import lesson
+
+
+class Db:	#物件
 	def __init__(self):
 		self.connect()
 
@@ -847,13 +848,21 @@ class Db:
 	def insert_data(self):
 		print('上傳資料')
 
-# 若Db再不同的檔案程式碼db，則採以下import
-from db import Db
+def addrs:	#function
+	pass
 
-class Tool:
+x = 5
+
+# 若Db再不同的檔案程式碼db，則採以下import
+from db import Db, addrs, x		# 同目錄載入方式
+from 檔案名稱.db import Db		#不同目錄載入方式，母資料夾要引用子資料夾中的檔案
+from ..db import Db		#子資料夾要引用母資料夾的檔案 不建議這樣使用， python不允許這樣使用(有特定方式可以處理，但此設計不好)
+
+class Tool:	#在tool.py
 	def __init__(self):
 		print('test first')
 		self.db = Db()
 
 	def upload(self):
 		self.db.insert_data()
+
