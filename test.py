@@ -836,33 +836,96 @@ import os
 
 
 # import lesson
+# class Db:	#物件
+# 	def __init__(self):
+# 		self.connect()
+
+# 	def connect(self):
+# 		print('實際建立連線')
+
+# 	def insert_data(self):
+# 		print('上傳資料')
+
+# def addrs:	#function
+# 	pass
+
+# x = 5
+
+# # 若Db再不同的檔案程式碼db，則採以下import
+# from db import Db, addrs, x		# 同目錄載入方式
+# from 檔案名稱.db import Db		#不同目錄載入方式，母資料夾要引用子資料夾中的檔案
+# from ..db import Db		#子資料夾要引用母資料夾的檔案 不建議這樣使用， python不允許這樣使用(有特定方式可以處理，但此設計不好)
+
+# class Tool:	#在tool.py
+# 	def __init__(self):
+# 		print('test first')
+# 		self.db = Db()
+
+# 	def upload(self):
+# 		self.db.insert_data()
+
+# line聊天機器人 : line-bot-sdk
+# flask, django 架設伺服器或寫網站的套件，下列程式碼為網頁程式碼
+from flask import Flask, request, abort
+
+from linebot.v3 import (	# webhook Webhook = Web + Hook（鉤子）它是一種 由伺服器主動推送資料給你的機制，通常透過 HTTP POST 請求 將即時事件傳送到你指定的網址（endpoint）。 所以需要致能使用
+    WebhookHandler
+)
+from linebot.v3.exceptions import (
+    InvalidSignatureError
+)
+from linebot.v3.messaging import (
+    Configuration,
+    ApiClient,
+    MessagingApi,
+    ReplyMessageRequest,
+    TextMessage
+)
+from linebot.v3.webhooks import (
+    MessageEvent,
+    TextMessageContent
+)
+
+app = Flask(__name__)
+
+configuration = Configuration(access_token='YOUR_CHANNEL_ACCESS_TOKEN')		# 提供必須金鑰 (此為line聊天機器人官網提供予使用者的金鑰)，證明你為此帳戶的擁有者
+handler = WebhookHandler('YOUR_CHANNEL_SECRET')		# 提供密碼
 
 
-class Db:	#物件
-	def __init__(self):
-		self.connect()
+@app.route("/callback", methods=['POST'])	# 將訊息轉載到/callbackXXX 指定的網址
+def callback():
+    # get X-Line-Signature header value
+    signature = request.headers['X-Line-Signature']
 
-	def connect(self):
-		print('實際建立連線')
+    # get request body as text
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
 
-	def insert_data(self):
-		print('上傳資料')
+    # handle webhook body
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        app.logger.info("Invalid signature. Please check your channel access token/channel secret.")
+        abort(400)
 
-def addrs:	#function
-	pass
+    return 'OK'
 
-x = 5
 
-# 若Db再不同的檔案程式碼db，則採以下import
-from db import Db, addrs, x		# 同目錄載入方式
-from 檔案名稱.db import Db		#不同目錄載入方式，母資料夾要引用子資料夾中的檔案
-from ..db import Db		#子資料夾要引用母資料夾的檔案 不建議這樣使用， python不允許這樣使用(有特定方式可以處理，但此設計不好)
+@handler.add(MessageEvent, message=TextMessageContent)
+def handle_message(event):
+    with ApiClient(configuration) as api_client:
+        line_bot_api = MessagingApi(api_client)
+        line_bot_api.reply_message_with_http_info(
+            ReplyMessageRequest(
+                reply_token=event.reply_token,
+                messages=[TextMessage(text=event.message.text)]
+            )
+        )
 
-class Tool:	#在tool.py
-	def __init__(self):
-		print('test first')
-		self.db = Db()
 
-	def upload(self):
-		self.db.insert_data()
+# 在 Python 中，每個模組（.py 檔案）都有一個內建變數 __name__。
+# 如果這個檔案是 被直接執行（例如 python myfile.py），那麼 __name__ 的值會是 "__main__"。
+# 如果這個檔案是 被其他程式匯入（例如 import myfile），那麼 __name__ 的值會是這個檔案的檔名（不含 .py）。
+if __name__ == "__main__":		# 如果app.py是直接被執行而不是被載入的話，才執行此內容 (不希望import就執行) 「只有當這個檔案是直接執行時，才會執行下面的程式碼。」
+    app.run()
 
