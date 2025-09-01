@@ -943,3 +943,4 @@ if __name__ == "__main__":		# 如果app.py是直接被執行而不是被載入�
 # 上面的requirements內的套件可以透過pip更新版本pip install --upgrade <套件名稱> 或 pip install -U <套件名稱>
 # 可透過pip freeze > "requirements.txt"儲存目前使用套件的資訊
 # git add . 將資料夾內的檔案都staged
+# NLP natural language processing 自然語言程序 (True AI)
