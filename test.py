@@ -892,7 +892,7 @@ configuration = Configuration(access_token='YOUR_CHANNEL_ACCESS_TOKEN')		# 提�
 handler = WebhookHandler('YOUR_CHANNEL_SECRET')		# 提供密碼
 
 
-@app.route("/callback", methods=['POST'])	# 將訊息轉載到/callbackXXX 指定的網址
+@app.route("/callback", methods=['POST'])	# 將訊息轉載到'指定的網址' + /callback 則執行此段程式
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
@@ -929,3 +929,17 @@ def handle_message(event):
 if __name__ == "__main__":		# 如果app.py是直接被執行而不是被載入的話，才執行此內容 (不希望import就執行) 「只有當這個檔案是直接執行時，才會執行下面的程式碼。」
     app.run()
 
+
+
+# line聊天機器人 : 架設雲端平台(程式在雲端執行) HEROKU PaaS（Platform as a Service，平台即服務）
+# git push origin master
+# git push heroku master		# heroku目前要收費，所以只寫範例code
+
+# remote / local #遠端
+# heroku git:remote -a line-bot-0402	# "line-bot-0402此為heroku的專案名稱，須讓git知道對應在heroku的專案名稱"
+
+# 需要建立一個procfile.py，讓heroku知道要怎麼運行，內容只有: web gunicorn app:app
+# 須建立requirements.txt, 讓營運者知道此專案用到那些套件: line-bot-sdk==1.2.3(version), gunicorn==2.4.1, flask
+# 上面的requirements內的套件可以透過pip更新版本pip install --upgrade <套件名稱> 或 pip install -U <套件名稱>
+# 可透過pip freeze > "requirements.txt"儲存目前使用套件的資訊
+# git add . 將資料夾內的檔案都staged
